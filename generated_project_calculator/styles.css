@@ -1,0 +1,156 @@
+/*
+  SimpleCalculator – Visual Styling (styles.css)
+  -------------------------------------------------
+  This stylesheet provides the visual appearance for the calculator UI.
+  It follows the specifications:
+    • Font family: Arial, sans-serif
+    • #calculator – fixed width, centered, background, padding, border‑radius
+    • #display – full width, larger font, right‑aligned, padding, subtle border
+    • .button-grid – CSS grid, 4 columns, gap, responsive sizing
+    • .calc-button – uniform size, background, font size, cursor, hover/focus
+    • .operator, .equals, .clear – special colour schemes
+*/
+
+/* ------------------------------------------------------------
+   Root variables – colours, typography, spacing
+   ------------------------------------------------------------ */
+:root {
+  /* Colours */
+  --calc-bg: #ffffff;               /* Calculator container background */
+  --calc-border: #dddddd;           /* Light border for container */
+  --display-bg: #f9f9f9;            /* Display field background */
+  --display-border: #cccccc;        /* Subtle border for display */
+  --button-bg: #4a90e2;             /* Primary button background */
+  --button-bg-hover: #357ab8;       /* Primary button hover/focus */
+  --button-text: #ffffff;           /* Primary button text colour */
+  --operator-bg: #ff9500;           /* Operators (+, -, *, /) */
+  --operator-bg-hover: #e08900;    
+  --equals-bg: #34c759;             /* Equals button */
+  --equals-bg-hover: #28a745;       
+  --clear-bg: #ff3b30;              /* Clear button */
+  --clear-bg-hover: #d32f2f;        
+
+  /* Typography */
+  --font-family: Arial, sans-serif;
+  --font-size-display: 2rem;
+  --font-size-button: 1.25rem;
+
+  /* Layout */
+  --calc-width: 320px;              /* Fixed width for calculator */
+  --calc-padding: 1rem;
+  --grid-gap: 0.5rem;
+}
+
+/* ------------------------------------------------------------
+   Global page styling
+   ------------------------------------------------------------ */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--font-family);
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------
+   Calculator container
+   ------------------------------------------------------------ */
+#calculator {
+  width: var(--calc-width);
+  background: var(--calc-bg);
+  border: 1px solid var(--calc-border);
+  padding: var(--calc-padding);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ------------------------------------------------------------
+   Display field
+   ------------------------------------------------------------ */
+#display {
+  width: 100%;
+  font-size: var(--font-size-display);
+  text-align: right;
+  padding: 0.5rem;
+  margin-bottom: var(--grid-gap);
+  border: 1px solid var(--display-border);
+  border-radius: 0.4rem;
+  background: var(--display-bg);
+  color: #222222;
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------
+   Buttons grid
+   ------------------------------------------------------------ */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--grid-gap);
+}
+
+/* ------------------------------------------------------------
+   Individual button styling
+   ------------------------------------------------------------ */
+.calc-button {
+  font-size: var(--font-size-button);
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.calc-button:hover,
+.calc-button:focus {
+  background: var(--button-bg-hover);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------
+   Special button classes
+   ------------------------------------------------------------ */
+.operator {
+  background: var(--operator-bg);
+}
+
+.operator:hover,
+.operator:focus {
+  background: var(--operator-bg-hover);
+}
+
+.equals {
+  background: var(--equals-bg);
+}
+
+.equals:hover,
+.equals:focus {
+  background: var(--equals-bg-hover);
+}
+
+.clear {
+  background: var(--clear-bg);
+}
+
+.clear:hover,
+.clear:focus {
+  background: var(--clear-bg-hover);
+}
+
+/* ------------------------------------------------------------
+   Responsive adjustments – small screens
+   ------------------------------------------------------------ */
+@media (max-width: 360px) {
+  :root {
+    --calc-width: 100%;
+    --font-size-display: 1.5rem;
+    --font-size-button: 1rem;
+    --calc-padding: 0.75rem;
+    --grid-gap: 0.4rem;
+  }
+}

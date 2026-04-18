@@ -1,0 +1,134 @@
+/*
+  SimpleCalculator – Visual Styling
+  --------------------------------
+  This stylesheet defines the visual appearance of the calculator.
+  It uses CSS custom properties (variables) for easy theming and
+  provides a responsive layout for small screens.
+*/
+
+/* ------------------------------------------------------------
+   Root variables – colours, typography, spacing
+   ------------------------------------------------------------ */
+:root {
+  /* Colours */
+  --color-bg: #f5f5f5;               /* Page background */
+  --color-calculator-bg: #ffffff;   /* Calculator container */
+  --color-display-bg: #e9e9e9;      /* Display field background */
+  --color-display-text: #222222;    /* Display text colour */
+  --color-button-bg: #4a90e2;       /* Primary button colour */
+  --color-button-bg-hover: #357ab8; /* Hover / focus colour */
+  --color-button-text: #ffffff;     /* Button text colour */
+  --color-button-special-bg: #d9534f;   /* "C" and "=" buttons */
+  --color-button-special-bg-hover: #c9302c;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-display: 2rem;
+  --font-size-btn: 1.25rem;
+
+  /* Spacing */
+  --spacing-unit: 0.5rem; /* Base unit */
+  --calc-width: 320px;    /* Fixed calculator width */
+}
+
+/* ------------------------------------------------------------
+   Global page styling
+   ------------------------------------------------------------ */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------
+   Calculator container – grid layout
+   ------------------------------------------------------------ */
+.calculator {
+  width: var(--calc-width);
+  background: var(--color-calculator-bg);
+  padding: calc(var(--spacing-unit) * 2);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+/* ------------------------------------------------------------
+   Display field styling
+   ------------------------------------------------------------ */
+.display {
+  width: 100%;
+  font-size: var(--font-size-display);
+  text-align: right;
+  padding: calc(var(--spacing-unit) * 1.5);
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--color-display-bg);
+  color: var(--color-display-text);
+  box-sizing: border-box;
+  pointer-events: none; /* make it look disabled */
+}
+
+/* ------------------------------------------------------------
+   Buttons container – grid of 4 columns
+   ------------------------------------------------------------ */
+.calculator .buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-unit);
+}
+
+/* ------------------------------------------------------------
+   Button styling (generic) – .btn class
+   ------------------------------------------------------------ */
+.calculator .btn {
+  font-size: var(--font-size-btn);
+  padding: calc(var(--spacing-unit) * 1.2);
+  border: none;
+  border-radius: 0.4rem;
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.calculator .btn:hover,
+.calculator .btn:focus {
+  background: var(--color-button-bg-hover);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* Special styling for clear (C) and equals (=) buttons */
+.calculator .btn[data-value="C"],
+.calculator .btn[data-value="="] {
+  background: var(--color-button-special-bg);
+}
+
+.calculator .btn[data-value="C"]:hover,
+.calculator .btn[data-value="C"]:focus,
+.calculator .btn[data-value="="]:hover,
+.calculator .btn[data-value="="]:focus {
+  background: var(--color-button-special-bg-hover);
+}
+
+/* ------------------------------------------------------------
+   Responsive tweaks – small screens
+   ------------------------------------------------------------ */
+@media (max-width: 360px) {
+  :root {
+    --calc-width: 100%;
+    --font-size-display: 1.5rem;
+    --font-size-btn: 1rem;
+    --spacing-unit: 0.4rem;
+  }
+
+  .calculator {
+    padding: calc(var(--spacing-unit) * 2);
+  }
+}
